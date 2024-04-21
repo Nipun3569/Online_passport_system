@@ -12,46 +12,6 @@ Develop an online passport system to streamline and modernize the passport appli
 ![image](https://github.com/Nipun3569/Online_passport_system/assets/95686790/fab6a451-498f-4939-bb00-e43ccf073216)
 
 # 4.Test cases
-Test Code ID	1
-Test Case Description	User Registration
-Prerequisites	1.Enter all Fields
-2.Click register
-Test Scenario 1	User enter existing username
-Test Data	Email: nsharma7_be21@thapar.edu
-Full Name: Nipun Sharma
-Dob: 28-01-2003
-Passport Office: Amritsar
-Password: Password
-Confirm: Password
-Preference: Tatkal
-
-Page 2
-Adhaar number:2879898798
-Adhaar image
-PAN image
-Signature image
-Step	Expected Output	Actual Result	Pass/Fail
-1	Face Match	Faces match	Pass
-
-
-Test Code ID	2
-Test Case Description	User Registration
-Prerequisites	1.Enter all Fields
-2.Click register
-Test Scenario 1	User enter existing username
-Test Data	Email: gsingh7_be21@thapar.edu
-Full Name: Gurnaz
-Dob: 28-01-2003
-Passport Office: Patna
-Password: Password1
-Confirm: Password1
-Preference: Normal
-
-Page 2
-Adhaar number:287449898798
-Adhaar image
-PAN image
-Signature image
-Step	Expected Output	Actual Result	Pass/Fail
-1	Face Match	Faces match	Pass
+![image](https://github.com/Nipun3569/Online_passport_system/assets/95686790/4fa95eff-9ab3-42f8-992f-311e77a47732)
+![image](https://github.com/Nipun3569/Online_passport_system/assets/95686790/5f2841dd-93ef-474a-85be-9d2aa8e46a99)
 
