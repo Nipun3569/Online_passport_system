@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Upload and Facial Recognition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4; /* Adding a light background color */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px; /* Adding margin at the bottom of the heading */
+        }
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff; /* Adding a white background for the form */
+            padding: 20px; /* Adding some padding inside the form */
+            border-radius: 8px; /* Rounding the corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="file"] {
+            width: calc(100% - 20px); /* Adjusting width and removing horizontal scrollbar */
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc; /* Adding a border */
+            border-radius: 4px; /* Rounding the input corners */
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Adding a smooth hover effect */
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Document Upload and Facial Recognition</h1>
+    <form action="" id="detailform">
+        <label for="adhaarNumber">Adhaar number:</label>
+        <input type="text" id="adhaarNumber" name="adhaarNumber" required>
+        <br>
+        <label for="adhaarImage">Adhaar Image:</label>
+        <input type="file" id="adhaarImage" name="adhaarImage" accept="image/*" required>
+        <br>
+        <label for="panImage">PAN Image:</label>
+        <input type="file" id="panImage" name="panImage" accept="image/*" required>
+        <br>
+        <label for="signatureImage">Signature Image:</label>
+        <input type="file" id="signatureImage" name="signatureImage" accept="image/*" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
