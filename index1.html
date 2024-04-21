@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passport Seva Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        header {
+            background-color: #008cba;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .date {
+            border: 2px solid #008cba;
+            border-radius: 8px;
+            background-color: #fff;
+            color: #008cba;
+            text-align: center;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            max-width: 300px; /* Decreased width */
+            margin: 0 auto;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px auto; /* Added margin */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="email"],
+        input[type="text"],
+        input[type="date"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        fieldset {
+            border: none;
+            margin: 0;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        button[type="button"] {
+            background-color: #008cba;
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button[type="button"]:hover {
+            background-color: #005f70;
+        }
+
+        .custom-alert {
+            display: none;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer button {
+            background-color: #008cba;
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        footer button:hover {
+            background-color: #005f70;
+        }
+
+        .toggle-button {
+            background-color: #008cba;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .toggle-button:hover {
+            background-color: #005f70;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        body.dark-mode header {
+            background-color: #005f70;
+        }
+
+        body.dark-mode .date {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        body.dark-mode form {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Additional Styles */
+        form label,
+        form h2 {
+            color: #008cba;
+        }
+
+        button[type="button"] {
+            background-color: #005f70;
+            color: white;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button[type="button"]:hover {
+            background-color: #00445a;
+        }
+
+        button,
+        input[type="submit"] {
+            transition: background-color 0.3s, color 0.3s;
+            background-color: #008cba;
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover,
+        input[type="submit"]:hover {
+            background-color: #005f70;
+        }
+
+        fieldset legend {
+            font-weight: bold;
+            color: #008cba;
+            margin-bottom: 10px;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        input[type="radio"]+label {
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            display: inline-block;
+            line-height: 20px;
+        }
+
+        input[type="radio"]+label::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid #008cba;
+            border-radius: 50%;
+            background-color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        input[type="radio"]:checked+label::before {
+            background-color: #008cba;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+       <marquee behavior="scroll" direction="left">
+        <h1>Welcome to Passport Seva.</h1>
+    </marquee>
+    </header>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="./main.js"></script>
+
+    <main>
+        <div class="date">
+            <p>See <br>Appointment<br> Date<br></p>
+        </div>
+
+        <form action="" id="contactForm">
+            <h2>Please Fill the required details for Registration.</h2>
+
+            <label for="name">Email:</label>
+            <input type="email" name="name" id="name" placeholder="Enter Your Email" required>
+
+            <label for="fullname">Full Name:</label>
+            <input type="text" name="fullname" id="fullname" placeholder="Enter Your Full Name" required>
+
+            <label for="birthday">Date Of Birth:</label>
+            <input type="date" id="birthday" name="birthday">
+
+            <label for="passportOffice">Passport Office:</label>
+            <select name="passportOffice" id="passportOffice" required>
+                <option value="">--Select--</option>
+                <!-- Add your options here -->
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Amritsar">Amritsar</option>
+                <option value="Bathinda">Bathinda</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Goa">Goa</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Jalandhar">Jalandhar</option>
+                <option value="Jammu">Jammu</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Kota">Kota</option>
+                <option value="Lucknow">Lucknow</option>
+                <option value="Ludhiana">Ludhiana</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Nagpur">Nagpur</option>
+                <option value="Patiala">Patiala</option>
+                <option value="Patna">Patna</option>
+                <option value="Pune">Pune</option>
+                <option value="Shimla">Shimla</option>
+                <option value="Srinagar">Srinagar</option>
+            </select>
+
+            <label for="password">Enter Password:</label>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
+
+            <fieldset>
+                <legend>Enter Your Preference</legend>
+                <input type="radio" value="normal" id="radioOne" name="account" checked required>
+                <label for="radioOne">Normal</label>
+                <input type="radio" value="tatkaal" id="radioTwo" name="account" required>
+                <label for="radioTwo">Tatkaal</label>
+            </fieldset>
+
+            <input type="submit" value="Submit">
+        </form>
+
+        <div class="custom-alert" id="customAlert"></div>
+    </main>
+
+    <footer>
+        <button onclick="Submit()">Move To Next Page</button>
+    </footer>
+
+    <script>
+        function Submit() {
+            // You can add form validation logic here if needed
+            // For demonstration purposes, let's redirect to next_page.html
+            window.location.href = 'index4.html';
+            return false; // Prevents the form from submitting in the traditional way
+        }
+
+        function submitForm() {
+            var form = document.getElementById('contactForm');
+            if (form.checkValidity()) {
+                showSuccessMessage();
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        }
+
+        function showSuccessMessage() {
+            var alertBox = document.getElementById('customAlert');
+            alertBox.innerHTML = 'Your details have been recorded';
+            alertBox.style.display = 'block';
+            setTimeout(function () {
+                alertBox.style.display = 'none';
+            },2000);
+        }
+    </script>
+</body>
+
+</html>
+
