@@ -54,10 +54,10 @@
 <body>
     <h1>Document Upload and Facial Recognition</h1>
     <form action="" id="detailform">
-        <label for="adhaarNumber">Adhaar number:</label>
+        <label for="adhaarNumber">Aadhaar Number:</label>
         <input type="text" id="adhaarNumber" name="adhaarNumber" required>
         <br>
-        <label for="adhaarImage">Adhaar Image:</label>
+        <label for="adhaarImage">Aadhaar Image:</label>
         <input type="file" id="adhaarImage" name="adhaarImage" accept="image/*" required>
         <br>
         <label for="panImage">PAN Image:</label>
@@ -68,5 +68,81 @@
         <br>
         <button type="submit">Submit</button>
     </form>
+
+    <!-- Include Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+    <script>
+        // Sample Firebase configuration (replace these with your actual credentials)
+        const firebaseConfig = {
+            apiKey: "AIzaSyA-sampleApiKey1234567890abcdefg", 
+            authDomain: "passport-seva-app.firebaseapp.com",
+            databaseURL: "https://passport-seva-app.firebaseio.com",
+            projectId: "passport-seva-app",
+            storageBucket: "passport-seva-app.appspot.com",
+            messagingSenderId: "123456789012",
+            appId: "1:123456789012:web:abcdef1234567890abcdef"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage();
+        const database = firebase.database();
+
+        // Add an event listener for the form submission
+        document.getElementById("detailform").addEventListener("submit", submitForm);
+
+        function submitForm(e) {
+            e.preventDefault(); // Prevent the page from refreshing
+
+            const aadhaarNumber = document.getElementById("adhaarNumber").value;
+            const aadhaarImage = document.getElementById("adhaarImage").files[0];
+            const panImage = document.getElementById("panImage").files[0];
+            const signatureImage = document.getElementById("signatureImage").files[0];
+
+            // Validate that images are uploaded
+            if (!aadhaarImage || !panImage || !signatureImage) {
+                alert("Please upload all required documents.");
+                return;
+            }
+
+            // Upload files to Firebase Storage and save metadata to Firebase Database
+            uploadFile(aadhaarNumber, aadhaarImage, "aadhaarImage");
+            uploadFile(aadhaarNumber, panImage, "panImage");
+            uploadFile(aadhaarNumber, signatureImage, "signatureImage");
+        }
+
+        function uploadFile(aadhaarNumber, file, fileType) {
+            const storageRef = storage.ref();
+            const fileRef = storageRef.child(`documents/${aadhaarNumber}/${file.name}`);
+
+            // Upload file to Firebase Storage
+            fileRef.put(file).then(() => {
+                console.log(`${fileType} uploaded successfully!`);
+                // Save the file URL in Firebase Database
+                fileRef.getDownloadURL().then((url) => {
+                    saveMetadata(aadhaarNumber, url, fileType);
+                });
+            }).catch((error) => {
+                console.error(`Error uploading ${fileType}:`, error);
+            });
+        }
+
+        function saveMetadata(aadhaarNumber, url, fileType) {
+            const documentRef = database.ref(`documents/${aadhaarNumber}`);
+            const updates = {};
+            updates[fileType] = url;
+
+            documentRef.update(updates)
+                .then(() => {
+                    console.log(`${fileType} URL saved to database successfully!`);
+                })
+                .catch((error) => {
+                    console.error(`Error saving ${fileType} URL:`, error);
+                });
+        }
+    </script>
 </body>
 </html>
