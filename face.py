@@ -37,6 +37,18 @@ def capture_faces_from_camera():
     return captured_faces
 
 
+aadhaar_img = "aadhaar.jpg"
+pan_img = "pan.jpg"
+
+
+result = DeepFace.verify(aadhaar_img, pan_img)
+
+
+if result['verified']:
+    print("Verification successful! Both images belong to the same person.")
+else:
+    print("Verification failed! The faces do not match.")
+    
 img_path = "IMG_20241004_184228.jpg"
 image = cv2.imread(img_path)
 
